@@ -1,0 +1,67 @@
+{
+  "name": "kbrodej/drupal-extension-layout-builder",
+  "description": "Additional step definitions for testing Drupal sites with layout builder using Behat.",
+  "license": "MIT",
+  "type": "behat-extension",
+  "keywords": [
+    "behat",
+    "drupal"
+  ],
+  "authors": [
+    {
+      "name": "Klemen Brodej",
+      "email": "klemen@kbrodej.si",
+      "homepage": "https://github.com/kbrodej",
+      "role": "Developer"
+    }
+  ],
+  "homepage": "https://github.com/kbrodej/drupal-extension-layout-builder",
+  "require": {
+    "drupal/drupal-extension": "4.*",
+    "ramsey/uuid": "^4.2"
+  },
+  "require-dev": {
+    "composer/installers": "^1.2",
+    "drupal/core": "^8.8 || ~9",
+    "drupal/core-composer-scaffold": "^8.8 || ~9",
+    "drupal/core-dev": "^8.8 || ~9",
+    "drush/drush": "~10.0",
+    "ergebnis/composer-normalize": "^2.5",
+    "nuvoleweb/drupal-behat": "^1.2",
+    "squizlabs/php_codesniffer": "^3.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Kbrodej\\Drupal\\": "./src/"
+    }
+  },
+  "extra": {
+    "drupal-scaffold": {
+      "locations": {
+        "web-root": "build/"
+      }
+    },
+    "installer-paths": {
+      "build/core": [
+        "type:drupal-core"
+      ],
+      "build/libraries/{$name}": [
+        "type:drupal-library"
+      ],
+      "build/modules/contrib/{$name}": [
+        "type:drupal-module"
+      ],
+      "build/profiles/contrib/{$name}": [
+        "type:drupal-profile"
+      ],
+      "build/themes/contrib/{$name}": [
+        "type:drupal-theme"
+      ]
+    }
+  },
+  "scripts": {
+    "post-update-cmd": [
+      "composer normalize --no-update-lock"
+    ]
+  }
+}
