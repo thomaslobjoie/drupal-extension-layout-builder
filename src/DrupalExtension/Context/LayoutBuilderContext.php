@@ -26,11 +26,11 @@ class LayoutBuilderContext extends RawDrupalContext
     protected array $blocks;
 
     /**
-     * @Given inline blocks:
+     * @Given :type inline block(s):
      *
      * @param TableNode $blockTable
      */
-    public function inlineBlocks(TableNode $blockTable): void
+    public function inlineBlocks(string $type, TableNode $blockTable): void
     {
         foreach ($blockTable->getHash() as $blockHash) {
             if (empty($blockHash['status'])) {
@@ -39,6 +39,7 @@ class LayoutBuilderContext extends RawDrupalContext
 
             $blockHash['uuid'] = Uuid::uuid4();
             $block = (object)$blockHash;
+            $block->type = $type;
             $saved = $this->getDriver()->createEntity('block_content', $block);
             $this->blocks[] = $saved;
         }
