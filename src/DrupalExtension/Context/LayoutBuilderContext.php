@@ -85,7 +85,6 @@ class LayoutBuilderContext extends RawDrupalContext
      */
     public function iAttachBlockToInSection(string $block, string $node, string $sectionId): void
     {
-        $this->getCore();
         $loadedBlock = $this->getCore()->loadContentByTitle('block_content', $block, 'info', 'changed');
         $loadedNode = $this->getCore()->loadContentByTitle('node', $node);
         if (is_null($loadedBlock)) {

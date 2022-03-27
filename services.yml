@@ -1,0 +1,9 @@
+parameters:
+  drupal.driver.cores.8.class: Kbrodej\Drupal\Driver\Cores\Drupal8
+  drupal.behat.context_initializer.service_container.class: Kbrodej\Drupal\DrupalExtension\Context\Initializer\ServiceContainerInitializer
+services:
+  drupal.behat.context_initializer.service_container:
+    class: '%drupal.behat.context_initializer.service_container.class%'
+    public: true
+    tags:
+      - { name: context.initializer }
