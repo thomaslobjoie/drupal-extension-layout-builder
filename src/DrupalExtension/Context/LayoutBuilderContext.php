@@ -5,11 +5,12 @@ namespace Kbrodej\Drupal\DrupalExtension\Context;
 use Behat\Gherkin\Node\TableNode;
 use Drupal\block_content\BlockContentInterface;
 use Drupal\Core\Entity\EntityStorageException;
+use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Drupal\layout_builder\Section;
 use Drupal\layout_builder\SectionComponent;
 use Drupal\node\NodeInterface;
-use Kbrodej\Drupal\DrupalExtension\Exceptions\EntityNotFoundException;
-use Kbrodej\Drupal\DrupalExtension\Exceptions\LayoutBuilderNotSupportedException;
+use Kbrodej\Drupal\Exceptions\EntityNotFoundException;
+use Kbrodej\Drupal\Exceptions\LayoutBuilderNotSupportedException;
 use Ramsey\Uuid\Uuid;
 
 /**
@@ -17,17 +18,17 @@ use Ramsey\Uuid\Uuid;
  */
 class LayoutBuilderContext extends RawDrupalContext
 {
-
     /**
      * Keep track of blocks, so they can be cleaned up.
      *
      * @var array
      */
-    protected array $blocks;
+    protected array $blocks = [];
 
     /**
      * @Given :type inline block(s):
      *
+     * @param string $type
      * @param TableNode $blockTable
      */
     public function inlineBlocks(string $type, TableNode $blockTable): void
@@ -62,9 +63,9 @@ class LayoutBuilderContext extends RawDrupalContext
      * @Given I reset node :title layout
      *
      */
-    public function iResetNodeLayout(string $title, string $sectionId)
+    public function iResetNodeLayout(string $title, string $sectionId): void
     {
-        $node = $this->getCore()->loadContentByTitle('node', $title);
+        $node = $this->getDriver()->getCore()->loadContentByTitle('node', $title);
         if (is_null($node)) {
             throw new EntityNotFoundException(sprintf('Node with title %s not found', $title));
         }
@@ -85,8 +86,8 @@ class LayoutBuilderContext extends RawDrupalContext
      */
     public function iAttachBlockToInSection(string $block, string $node, string $sectionId): void
     {
-        $loadedBlock = $this->getCore()->loadContentByTitle('block_content', $block, 'info', 'changed');
-        $loadedNode = $this->getCore()->loadContentByTitle('node', $node);
+        $loadedBlock = $this->getDriver()->getCore()->loadContentByTitle('block_content', $block, 'info', 'changed');
+        $loadedNode = $this->getDriver()->getCore()->loadContentByTitle('node', $node);
         if (is_null($loadedBlock)) {
             throw new EntityNotFoundException(sprintf('BlockContentEntity with title %s not found!', $block));
         }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Kbrodej\Drupal\DrupalExtension\Exceptions;
+namespace Kbrodej\Drupal\Exceptions;
 
 use Behat\Testwork\Tester\Exception\TesterException;
 use RuntimeException;
@@ -10,5 +10,4 @@ use RuntimeException;
  */
 class EntityNotFoundException extends RuntimeException implements TesterException
 {
-
 }

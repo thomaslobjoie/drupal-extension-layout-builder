@@ -18,6 +18,7 @@
   "homepage": "https://github.com/kbrodej/drupal-extension-layout-builder",
   "require": {
     "drupal/drupal-extension": "4.*",
+    "nuvoleweb/drupal-behat": "^1.2",
     "ramsey/uuid": "^4.2"
   },
   "require-dev": {
@@ -27,7 +28,6 @@
     "drupal/core-dev": "^8.8 || ~9",
     "drush/drush": "~10.0",
     "ergebnis/composer-normalize": "^2.5",
-    "nuvoleweb/drupal-behat": "^1.2",
     "squizlabs/php_codesniffer": "^3.0"
   },
   "autoload": {

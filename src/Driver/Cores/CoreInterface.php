@@ -5,14 +5,13 @@ namespace Kbrodej\Drupal\Driver\Cores;
 use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
 use Drupal\Component\Plugin\Exception\PluginNotFoundException;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Driver\Cores\CoreInterface as OriginalCoreInterface;
+use NuvoleWeb\Drupal\Driver\Cores\CoreInterface as NuvoleWebCoreInterface;
 
 /**
  * Provides core extendability.
  */
-interface CoreInterface extends OriginalCoreInterface
+interface CoreInterface extends NuvoleWebCoreInterface
 {
-
     /**
      * Loads content by type and title.
      *

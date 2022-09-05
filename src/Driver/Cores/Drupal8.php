@@ -4,14 +4,13 @@ namespace Kbrodej\Drupal\Driver\Cores;
 
 use Drupal;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Driver\Cores\Drupal8 as OriginalCore;
+use NuvoleWeb\Drupal\Driver\Cores\Drupal8 as NuvoleWebDrupal8;
 
 /**
  * Provides core driver with more methods.
  */
-class Drupal8 extends OriginalCore implements CoreInterface
+class Drupal8 extends NuvoleWebDrupal8 implements CoreInterface
 {
-
     /**
      * @inheritDoc
      */
