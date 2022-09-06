@@ -131,7 +131,7 @@ class LayoutBuilderContext extends RawDrupalContext
 
             // Create a new section component using the node and plugin config.
             $component = new SectionComponent(
-                Uuid::uuid4(),
+                Uuid::uuid4()->toString(),
                 'content',
                 $pluginConfiguration
             );
