@@ -1,7 +1,7 @@
 {
   "name": "kbrodej/drupal-extension-layout-builder",
   "description": "Additional step definitions for testing Drupal sites with layout builder using Behat.",
-  "license": "MIT",
+  "license": "GPL-2.0+",
   "type": "behat-extension",
   "keywords": [
     "behat",
@@ -13,6 +13,11 @@
       "email": "klemen@kbrodej.si",
       "homepage": "https://github.com/kbrodej",
       "role": "Developer"
+    },
+    {
+      "name": "Inviqa Uk Ltd",
+      "homepage": "https://inviqa.com",
+      "role": "Sponsor"
     }
   ],
   "homepage": "https://github.com/kbrodej/drupal-extension-layout-builder",
