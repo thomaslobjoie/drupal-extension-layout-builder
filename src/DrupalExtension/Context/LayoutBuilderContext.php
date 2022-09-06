@@ -41,7 +41,7 @@ class LayoutBuilderContext extends RawDrupalContext
             $blockHash['uuid'] = Uuid::uuid4();
             $block = (object)$blockHash;
             $block->type = $type;
-            $saved = $this->getDriver()->createEntity('block_content', $block);
+            $saved = $this->getDriver()->getCore()->entityCreate('block_content', $block);
             $this->blocks[] = $saved;
         }
     }
@@ -54,7 +54,7 @@ class LayoutBuilderContext extends RawDrupalContext
     public function cleanBlocks(): void
     {
         foreach ($this->blocks as $block) {
-            $this->getDriver()->entityDelete('block_content', $block);
+            $this->getDriver()->getCore()->entityDelete('block_content', $block);
         }
         $this->blocks = [];
     }
