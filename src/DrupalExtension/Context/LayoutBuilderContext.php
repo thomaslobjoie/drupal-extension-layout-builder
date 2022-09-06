@@ -84,17 +84,18 @@ class LayoutBuilderContext extends RawDrupalContext
      *
      * @throws EntityStorageException
      */
-    public function iAttachBlockToInSection(string $block, string $node, string $sectionId): void
+    public function iAttachBlockToInSection(string $blockTitle, string $nodeTitle, string $sectionId): void
     {
-        $loadedBlock = $this->getDriver()->getCore()->loadContentByTitle('block_content', $block, 'info', 'changed');
-        $loadedNode = $this->getDriver()->getCore()->loadContentByTitle('node', $node);
+        $loadedBlock = $this->getDriver()->getCore()
+          ->loadContentByTitle('block_content', $blockTitle, 'info', 'changed');
+        $loadedNode = $this->getDriver()->getCore()->loadContentByTitle('node', $nodeTitle);
         if (is_null($loadedBlock)) {
-            throw new EntityNotFoundException(sprintf('BlockContentEntity with title %s not found!', $block));
+            throw new EntityNotFoundException(sprintf('BlockContentEntity with title %s not found!', $blockTitle));
         }
 
 
         if (is_null($loadedNode)) {
-            throw new EntityNotFoundException(sprintf('Node with title %s not found!', $node));
+            throw new EntityNotFoundException(sprintf('Node with title %s not found!', $nodeTitle));
         }
 
         $this->attachBlockToParent($loadedNode, $loadedBlock, $sectionId);
