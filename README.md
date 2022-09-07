@@ -1,5 +1,5 @@
 # Behat Drupal Extension
-This package relies on Nuvole's [Behat Drupal Extension](https://github.com/nuvoleweb/drupal-behat) and it's feature to
+This package relies on Nuvole's [Behat Drupal Extension](https://github.com/nuvoleweb/drupal-behat) and its feature to
 override Drupal Core driver.
 
 Behat Drupal Extension provides the following features:
