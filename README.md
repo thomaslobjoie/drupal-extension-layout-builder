@@ -8,29 +8,9 @@ Behat Drupal Extension provides the following features:
 
 ## Installation and setup
 
-## TBC (once it is published on packagist)
 ```bash
-$ composer require nuvoleweb/drupal-behat
+$ composer require kbrodej/drupal-extension-layout-builder
 ```
-or
-
-add the repository in your `composer.json`
-```json
-{
-  "name": "My composer project",
-  "description": "Description for my composer projecy",
-  "type": "project",
-  "license": "MIT",
-  "minimum-stability": "dev",
-  "repositories": {
-    "kbrodej": {
-      "type": "vcs",
-      "url": "git@github.com:kbrodej/drupal-extension-layout-builder.git"
-    }
-  }
-}
-```
-
 
 Setup the extension by following the [Quick start](https://github.com/jhedstrom/drupalextension#quick-start) section
 available on the original Behat Drupal Extension page, just use `NuvoleWeb\Drupal\DrupalExtension` instead of the native
