@@ -88,12 +88,11 @@ class LayoutBuilderContext extends RawDrupalContext
     {
         $loadedBlock = $this->getDriver()->getCore()
           ->loadContentByTitle('block_content', $blockTitle, 'info', 'changed');
-        $loadedNode = $this->getDriver()->getCore()->loadContentByTitle('node', $nodeTitle);
         if (is_null($loadedBlock)) {
             throw new EntityNotFoundException(sprintf('BlockContentEntity with title %s not found!', $blockTitle));
         }
 
-
+        $loadedNode = $this->getDriver()->getCore()->loadContentByTitle('node', $nodeTitle);
         if (is_null($loadedNode)) {
             throw new EntityNotFoundException(sprintf('Node with title %s not found!', $nodeTitle));
         }
@@ -115,42 +114,42 @@ class LayoutBuilderContext extends RawDrupalContext
         BlockContentInterface $blockContent,
         string $sectionId = 'layout_onecol'
     ): void {
-        // @todo support adding instead of replacing new section and section components.
-        if ($node->hasField('layout_builder__layout')) {
-            $section = new Section($sectionId);
-
-            $bundle = $blockContent->bundle();
-            $pluginConfigurationId = sprintf('inline_block:%s', $bundle);
-            $pluginConfiguration = [
-                'id' => $pluginConfigurationId,
-                'provider' => 'layout_builder',
-                'label_display' => false,
-                'view_mode' => 'default',
-                'block_revision_id' => $blockContent->getRevisionId(),
-            ];
-
-            // Create a new section component using the node and plugin config.
-            $component = new SectionComponent(
-                Uuid::uuid4()->toString(),
-                'content',
-                $pluginConfiguration
-            );
-
-            // Add the component to the section.
-            $section->appendComponent($component);
-
-            // Add the section to the sections array.
-            $sections[] = $section;
-
-            // Set the sections.
-            $node->set('layout_builder__layout', $sections);
-
-            // Save the node.
-            $node->save();
-        } else {
+        if (!$node->hasField('layout_builder__layout')) {
             throw new LayoutBuilderNotSupportedException(
                 sprintf('Layout builder not supported on bundle %s', $node->bundle())
             );
         }
+
+        // TODO: support adding instead of replacing new section and section components.
+        $section = new Section($sectionId);
+
+        $bundle = $blockContent->bundle();
+        $pluginConfigurationId = sprintf('inline_block:%s', $bundle);
+        $pluginConfiguration = [
+            'id' => $pluginConfigurationId,
+            'provider' => 'layout_builder',
+            'label_display' => false,
+            'view_mode' => 'default',
+            'block_revision_id' => $blockContent->getRevisionId(),
+        ];
+
+        // Create a new section component using the node and plugin config.
+        $component = new SectionComponent(
+            Uuid::uuid4()->toString(),
+            'content',
+            $pluginConfiguration
+        );
+
+        // Add the component to the section.
+        $section->appendComponent($component);
+
+        // Add the section to the sections array.
+        $sections[] = $section;
+
+        // Set the sections.
+        $node->set('layout_builder__layout', $sections);
+
+        // Save the node.
+        $node->save();
     }
 }
