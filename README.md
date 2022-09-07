@@ -71,3 +71,7 @@ parameters:
 * [Behat documentation](http://docs.behat.org)
 * [Mink documentation](http://mink.behat.org)
 * [Drupal Behat group](http://groups.drupal.org/behat)
+
+## Supporting organizations
+* [Inviqa](https://inviqa.com/)
+* [Agiledrop](https://www.agiledrop.com/)
