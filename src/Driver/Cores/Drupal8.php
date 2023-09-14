@@ -20,7 +20,7 @@ class Drupal8 extends NuvoleWebDrupal8 implements CoreInterface
         string $primary = 'title',
         string $sort = 'created'
     ): ?EntityInterface {
-        $query = Drupal::entityTypeManager()->getStorage($storageId)->getQuery();
+        $query = Drupal::entityTypeManager()->getStorage($storageId)->getQuery()->accessCheck();
         $query->condition($primary, $title);
         $query->sort($sort);
 
